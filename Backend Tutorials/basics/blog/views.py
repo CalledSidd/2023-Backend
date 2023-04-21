@@ -16,4 +16,8 @@ def blog(request, id):
 
 
 def about(request):
-    return render(request, 'about.html')
+    name = "Sidharth S"
+    context = {
+        'name': name
+    }
+    return render(request, 'about.html', context)
