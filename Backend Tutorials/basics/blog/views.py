@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from blog.models import Post
+from django.urls import reverse
 
 # Create your views here.
 def home(request):
@@ -17,7 +18,9 @@ def blog(request, id):
 
 def about(request):
     name = "Sidharth S"
+    url = "/"
     context = {
-        'name': name
+        'name': name,
+        'url' : url
     }
     return render(request, 'about.html', context)
