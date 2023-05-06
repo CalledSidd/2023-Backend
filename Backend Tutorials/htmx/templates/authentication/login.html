@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='flex flex-col justify-center items-center h-screen w-screen bg-black text-[#20C20E]'>
+    <form action="" method='post'>
+        {% csrf_token %}
+        <span>Username</span>
+        <div class='border border-black'>
+            {{form.username}}
+        </div>
+        <span>Password</span>
+        <div class='border border-black'>
+            {{form.password}}
+        </div>
+        <button type='submit' class='bg-gray-700 p-4 px-5 mt-4'>Submit</button>
+    </form>
+    <a hx-get='signup/' hx-replace-url='/login'>Don't have an account? Signup</a>
+</div>
+
+
+{% endblock content %}

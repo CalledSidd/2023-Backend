@@ -1,10 +1,14 @@
 from django.urls import path
 
 from . views import (
-    IndexView
+    IndexView,
+    LoginView,
+    SignupView
 )
 
 
 urlpatterns = [
-    PATH('', IndexView.as_view(), name='index' )
+    path('', IndexView.as_view(), name='index'),
+    path('login/',LoginView.as_view(), name='login'),
+    path('signup/', SignupView.as_view(), name='signup'),
 ]

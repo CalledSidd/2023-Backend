@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='flex justify-center items-center h-screen bg-black text-[#20C20E]'>
+    <form action="" method='POST'>
+        <span>username</span>
+        <div class='border border-black'>
+            {{form.username}}
+        </div>
+        <span>email</span>
+        <div class='border border-black' >
+            {{form.email}}
+        </div>
+        <span>passeword</span>
+        <div class='border border-black'>
+            {{form.password1}}
+        </div>
+        <span>confirm password</span>
+        <div class='border border-black'>
+            {{form.password2}}
+        </div>
+        <button type='submit' class='bg-gray-700 p-3 mt-3'>Submit</button>
+    </form>
+</div>
+
+
+{% endblock content %}
