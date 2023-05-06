@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class='flex flex-col justify-center items-center h-screen', id='main-div'>
+    <ul class='font-bold'>
+        <li>Go to a page</li>
+        <li>Fetch some data</li>
+    </ul>
+    <div class='bg-white' x-data="{count: 0}">
+        <button x-on:click='count++'>Increase</button>
+        <span x-text='count'></span>
+    </div>
+    <button hx-get='{% url 'logout' %}'  hx-target='#main-div' hx-swap='outerHTML' class='p-4 bg-gray-700 text-white mt-12'>logout</button>
+</div>
+
+{% endblock content %}

@@ -1,25 +1,27 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class='flex justify-center items-center h-screen bg-black text-[#20C20E]'>
+<div class='flex flex-col justify-center items-center h-screen'>
     <form action="" method='POST'>
-        <span>username</span>
+        {% csrf_token %}
+        <span>{{form.username.label_tag}}</span>
         <div class='border border-black'>
             {{form.username}}
         </div>
-        <span>email</span>
+        <span>{{form.email.label_tag}}</span>
         <div class='border border-black' >
             {{form.email}}
         </div>
-        <span>passeword</span>
+        <span>Password</span>
         <div class='border border-black'>
             {{form.password1}}
         </div>
-        <span>confirm password</span>
+        <span>Confirm password</span>
         <div class='border border-black'>
             {{form.password2}}
         </div>
-        <button type='submit' class='bg-gray-700 p-3 mt-3'>Submit</button>
+        <button type='submit' class='bg-gray-700 p-4 px-5 mt-4'>Submit</button>
     </form>
+    <a href='{% url 'login' %}' hx-swap='outerHTML'>Already have an account? Login</a>
 </div>
 
 

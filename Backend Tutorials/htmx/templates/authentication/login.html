@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class='flex flex-col justify-center items-center h-screen w-screen bg-black text-[#20C20E]'>
+<div class='flex flex-col justify-center items-center h-screen w-screen '>
     <form action="" method='post'>
         {% csrf_token %}
         <span>Username</span>
@@ -13,7 +13,7 @@
         </div>
         <button type='submit' class='bg-gray-700 p-4 px-5 mt-4'>Submit</button>
     </form>
-    <a hx-get='signup/' hx-replace-url='/login'>Don't have an account? Signup</a>
+    <a href='{% url 'signup' %}'>Don't have an account? Signup</a>
 </div>
 
 
