@@ -2,32 +2,61 @@
 
 {% block content %}
 
-<div class='flex flex-col justify-center items-center h-screen', id='main-div'>
-    <ul class='font-bold'>
-        <li>Go to a page</li>
-        <li>Fetch some data</li>
-    </ul>
-    <div class='bg-white'
-    x-data="{
-        search : '',
-        items: ['income', 'expense', 'investment'],
-        get searchItems(){
-            return this.items.filter(
-                i => i.startsWith(this.search)
-            )
-        }
-    }"
+{% comment %} <div class='flex flex-col justify-center items-center h-screen', id='main-div'>
+    <div
+        x-data="{
+            search : '',
+            
+            items: ['income', 'expense', 'investment'],
+
+            get searchItems() {
+                return this.items.filter(
+                    i => i.startsWith(this.search)
+                )
+            }
+        }"
     >
     <input x-model='search' placeholder='Search Something'>
+
     <ul>
-        <template x-for"item in searchItems" : key='item'>
-            
+        <template x-for="item in searchItems" :key="item">
+            <li x-text='item'></li>
         </template>
     </ul>
-
-
     </div>
     <button hx-get='{% url 'logout' %}'  hx-target='#main-div' hx-swap='outerHTML' class='p-4 bg-gray-700 text-white mt-12'>logout</button>
+</div> {% endcomment %}
+
+<div>
+    <header>
+        <nav class='flex justify-center'>
+            <ul class='flex gap-10'>
+                <li>Go Somewhere</li>
+                <li>
+                    <div
+                    x-data="{
+                        search : '',
+                        
+                        items: ['income', 'expense', 'investment'],
+            
+                        get searchItems() {
+                            return this.items.filter(
+                                i => i.startsWith(this.search)
+                            )
+                        }
+                    }"
+                >
+                <input x-model='search' placeholder='Search Something'>
+            
+                <ul>
+                    <template x-for="item in searchItems" :key="item">
+                        <li x-text='item'></li>
+                    </template>
+                </ul>
+                </li>
+            </ul>
+        </nav>
+    </header>
 </div>
 
 {% endblock content %}
