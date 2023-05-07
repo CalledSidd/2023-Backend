@@ -7,9 +7,25 @@
         <li>Go to a page</li>
         <li>Fetch some data</li>
     </ul>
-    <div class='bg-white' x-data="{count: 0}">
-        <button x-on:click='count++'>Increase</button>
-        <span x-text='count'></span>
+    <div class='bg-white'
+    x-data="{
+        search : '',
+        items: ['income', 'expense', 'investment'],
+        get searchItems(){
+            return this.items.filter(
+                i => i.startsWith(this.search)
+            )
+        }
+    }"
+    >
+    <input x-model='search' placeholder='Search Something'>
+    <ul>
+        <template x-for"item in searchItems" : key='item'>
+            
+        </template>
+    </ul>
+
+
     </div>
     <button hx-get='{% url 'logout' %}'  hx-target='#main-div' hx-swap='outerHTML' class='p-4 bg-gray-700 text-white mt-12'>logout</button>
 </div>
