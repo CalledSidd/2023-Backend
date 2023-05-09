@@ -1,0 +1,110 @@
+version: "3.8"
+
+services:
+
+  caddy:
+    restart: unless-stopped
+    image: caddy:2.6.2
+    volumes:
+      - ./compose/production/caddy/Caddyfile:/etc/caddy/Caddyfile  # configuration
+      - caddy-config:/config  # configuration autosaves
+      - caddy-data:/data  # saving certificates
+      - wagtail_test-static:/var/www/static:ro # serving django's statics
+      - /var/log:/var/log:rw
+    env_file:
+      - env/.env
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - wagtail_test
+    networks:
+      - proxynet
+
+  wagtail_test:&wagtail_test
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: compose/production/wagtail_test/Dockerfile
+    image: production_wagtail_test_server
+    container_name: wagtail_test_production_server
+    command: /start
+    volumes:
+      - wagtail_test-static:/var/www/static:rw
+      - /var/log:/var/log:rw
+    depends_on:
+      - postgres
+      - redis
+      - mjml
+    env_file:
+      - env/.env
+    expose:
+      - "3000"
+    networks:
+      - webnet
+      - proxynet
+
+  celery_worker:
+    <<: *wagtail_test
+    container_name: "celery_worker"
+    command: /start-celery-worker
+
+
+  celery_beat:
+    <<: *wagtail_test
+    container_name: "celery_beat"
+    command: /start-celery-beat
+
+
+  celery_flower:
+    <<: *wagtail_test
+    container_name: "celery_flower"
+    command: /start-celery-flower
+
+  redis:
+    restart: unless-stopped
+    image: redis:6.2-alpine
+    container_name: redis_production
+    expose:
+      - "6379"
+    networks:
+      - webnet
+
+  postgres:
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: compose/production/postgres/Dockerfile
+    container_name: wagtail_test_production_postgres
+    volumes:
+      - wagtail_test-postgres-data:/var/lib/postgresql/data
+    env_file:
+      - env/.env
+    expose:
+      - "5432"
+    networks:
+      - webnet
+
+  mjml:
+    image: liminspace/mjml-tcpserver:0.11
+    container_name: mjml_tcpserver_production
+    restart: unless-stopped
+    environment:
+      HOST: "0.0.0.0"
+      PORT: "28101"
+      MJML_ARGS: "--mjml.minify=true --mjml.validationLevel=strict"
+    expose:
+      - "28101"
+    networks:
+      - webnet
+
+volumes:
+  wagtail_test-static:
+  wagtail_test-postgres-data:
+  wagtail_test-logs:
+  caddy-config:
+  caddy-data:
+
+networks:
+  webnet:
+  proxynet:
