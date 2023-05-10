@@ -1,9 +1,0 @@
-{% if request.user.is_authenticated %}
-    <ul class="menu">
-        <li>
-            <a href={% url 'login:home' %}>My Home</a>
-            <a href={% url 'login:logout' %}>Logout</a>
-        </li>
-    </ul>
-{% endif %}
-<p>Welcome Home</p>
