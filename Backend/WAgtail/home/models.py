@@ -4,5 +4,5 @@ from wagtail.models import Page
 
 
 class HomePage(Page):
-    template = 'templates/home/home_page.html'
-    
+    template = 'home/home_page.html'
+
