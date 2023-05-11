@@ -24,16 +24,6 @@ class HomePage(Page):
         related_name="+",
     )
 
-
-    content_panels = Page.content_panels + [
-        FieldPanel('blog_title'),
-        FieldPanel('blog_subtitle'),
-        MultipleChooserPanel(
-        'images', label = 'Images', chooser_field_name="image"
-        )
-
-    ]
-
     class Meta:
         verbose_name = "Primary Home Page"
         verbose_name_plural = "Main Home PAge"
