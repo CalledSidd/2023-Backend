@@ -3,6 +3,7 @@ from django.db import models
 from wagtail.models import Page
 from wagtail.admin.panels import FieldPanel
 from wagtail.fields import RichTextField
+from wagtail.admin.panels import MultipleChooserPanel
 
 class HomePage(Page):
     templates = 'home/home_page.html'
@@ -18,15 +19,19 @@ class HomePage(Page):
     blog_cta = models.ForeignKey(
         "wagtailcore.Page",
         null=True,
-        blank=False,
+        blank=True,
         on_delete=models.SET_NULL,
         related_name="+",
-
     )
 
 
     content_panels = Page.content_panels + [
-        FieldPanel('blog_title')
+        FieldPanel('blog_title'),
+        FieldPanel('blog_subtitle'),
+        MultipleChooserPanel(
+        'images', label = 'Images', chooser_field_name="image"
+        )
+
     ]
 
     class Meta:
