@@ -12,5 +12,5 @@ class HomePage(Page):
     ]
 
     class Meta:
-        verbose_name = "OH HEY THERE"
-        verbose_name_plural = "PLURAL THERE"
+        verbose_name = "Primary Home Page"
+        verbose_name_plural = "Main Home PAge"
