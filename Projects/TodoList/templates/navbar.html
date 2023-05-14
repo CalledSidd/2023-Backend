@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <div class="border-2 flex flex-col items-center" x-data="{title: 'Todolist'}" hx-get="">
+        <!-- Heading Section -->
+        <div class="my-8 font-bold text-3xl text-blue-300 flex justify-center items-center">
+            <p x-text="title"></p>
+        </div>
+        <div class="bg-red-500 w-[99vw] h-[89vh] flex flex-col justify-center items-center">
+            <div class="border border-2 border-blue-300 w-96 h-96">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
