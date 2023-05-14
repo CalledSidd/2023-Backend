@@ -2,6 +2,8 @@
 
 {% block content %}
 
-<h1>The todolist for you</h1>
+<div class="flex justify-center items-center h-screen" x-data="{title: 'Todolist'}">
+    <p x-text="title"></p>
+</div>
 
 {% endblock content %}
