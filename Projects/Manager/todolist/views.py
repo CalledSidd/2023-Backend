@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
 from django.views import View
 
@@ -9,14 +9,19 @@ class Index(TemplateView):
     template_name ='index.html'
 
 class Todos(View):
+    model = Todo
     template = 'todo/todo.html'
     def get(self, request):
-        todos = Todo.objects.all()
+        todo_items = self.model.objects.all()
+        print(todo_items)
         context = {
-            todos : 'todos'
+            'todos' : todo_items,
         }
-        return render(request, self.template, context)
+        return render(request,self.template, context)
     def post(self, request):
-        pass
+        title = request.POST.get('title')
+        if title:
+            todo = Todo.objects.create(title = title)
+            return redirect(Todos)
     def put(self, request):
         pass
