@@ -10,3 +10,7 @@ class Todo(View):
     template = 'todo/todo.html'
     def get(self, request):
         return render(request, self.template)
+    def post(self, request):
+        pass
+    def put(self, request):
+        pass
