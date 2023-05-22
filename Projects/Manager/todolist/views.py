@@ -11,10 +11,11 @@ class Index(TemplateView):
 class Todos(View):
     template = 'todo/todo.html'
     def get(self, request):
-        todos = Todo
+        todos = Todo.objects.all()
         context = {
             todos : 'todos'
         }
+        print(context)
         return render(request, self.template, context)
     def post(self, request):
         pass
