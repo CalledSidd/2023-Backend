@@ -2,11 +2,11 @@ from django.urls import path
 
 from . views import (
     Index,
-    Todo,
+    Todos,
 )
 
 
 
 urlpatterns =[
-    path('', Todo.as_view(), name='list'),
+    path('', Todos.as_view(), name='list'),
 ]
