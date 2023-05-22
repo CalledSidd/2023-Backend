@@ -12,7 +12,7 @@ class Todos(View):
     model = Todo
     template = 'todo/todo.html'
     def get(self, request):
-        todo_items = self.model.objects.all()
+        todo_items = self.model.objects.filter(active=True, completed=False)
         print(todo_items)
         context = {
             'todos' : todo_items,
