@@ -15,7 +15,6 @@ class Todos(View):
         context = {
             todos : 'todos'
         }
-        print(context)
         return render(request, self.template, context)
     def post(self, request):
         pass

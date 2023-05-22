@@ -6,17 +6,16 @@
         <input type="text" class="w-96 h-12 rounded-l-xl" placeholder=" Add New Task...">
         <button class="border border-gray-500 text-gray-700 px-6 rounded-r-xl active:scale-[.9] active:duration-75 ease-in-out transition-all">+</button>
     </div>
+    {% for todo in todos %}
     <div class="flex justify-center items-center h-fit mt-5">
-        {% for todo in todos %}
         <div class="flex">
             <button class="border border-gray-500 text-gray-700 px-6 rounded-l-xl active:scale-[.9] active:duration-75 ease-in-out transition-all">/</button>
             <div class="flex justify-center border border-gray-500 w-80 p-3">
-                <p>{{todo.title}}</p>
+                <p>List Item 1</p>
             </div>
             <button class="border border-gray-500 text-gray-700 px-6 rounded-r-xl active:scale-[.9] active:duration-75 ease-in-out transition-all">X</button>
         </div>
-        {% endfor %}
-        
     </div>
+    {% endfor %}
 </div>
 {% endblock content %}
