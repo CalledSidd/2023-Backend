@@ -10,3 +10,4 @@ def webHook():
         return "Webhook Received"
     
 app.run(host='0.0.0.0', port=8000)
+# Data from webhook {'message': 'This is a webhook'}
