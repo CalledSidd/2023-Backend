@@ -1,8 +1,10 @@
 function sayHello(name) {
     console.log("Hello " + name)
 }
-// Global Objects
+// Global Objects in JavaScript
 console.log();
 setTimeout();
 clearTimeout();
 setInterval();
+clearInterval();
+
