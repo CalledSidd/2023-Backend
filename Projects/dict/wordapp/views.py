@@ -12,9 +12,6 @@ class Word(View):
         if word:
             url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}"
             response = requests.get(url)
-            response_json = response.json()
-            cust_res = {}
-            cust_res = response_json['word']
-            cust_res = response_json['defenition']
-            return JsonResponse(cust_res, safe=False)
+            data = response.json()
+            return JsonResponse(response.json(), safe=False)
         return HttpResponse('<h1>Enter a Word</h1>')
